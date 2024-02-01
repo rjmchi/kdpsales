@@ -5,7 +5,7 @@
             $grand_total = 0;
         @endphp
         @foreach ($books as $book)
-            <div class="border-2 rounded p-2 m-2">
+            <div class="border-2 rounded p-2 m-2  bg-indigo-50">
                 <h2 class="text-xl font-bold mt-2">{{$book->title}}</h2>
                 <table class="table-fixed w-full">
                 @php
