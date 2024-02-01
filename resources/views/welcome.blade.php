@@ -50,7 +50,7 @@
             <form action="{{route('loadBooks')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="file" name="file" class="form-control">
-                <button type="submit" class="ml-8 rounded-md bg-indigo-700 px-3 py-2 leading-5 text-indigo-500 hover:bg-indigo-600">Upload</button>
+                <button type="submit" class="ml-8 rounded-md bg-indigo-700 px-3 py-2 leading-5 text-white hover:bg-indigo-600">Upload</button>
             </form>
         </div>
     </div>
