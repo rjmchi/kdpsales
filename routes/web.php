@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/bydate', [HomeController::class, 'bydate'])->name('bydate');
 Route::post('/uploadBooks', [HomeController::class, 'loadBooks'])->name('loadBooks');
 
 Route::get('/dashboard', function () {

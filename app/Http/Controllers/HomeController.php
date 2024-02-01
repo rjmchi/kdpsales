@@ -18,6 +18,11 @@ class HomeController extends Controller
         return view('welcome', ['books'=>$books]);
     }
 
+    public function bydate() {
+        $sales = Sales::orderBy('order_date')->with('book')->get();
+        return view('bydate', ['sales'=>$sales]);
+    }
+
     public function loadBooks(Request $request) {
         $filenameWithExt = $request->file('file')->getClientOriginalName();
         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);

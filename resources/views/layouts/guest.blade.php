@@ -15,6 +15,11 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-gray-900 antialiased">
+        <nav class="p-2 m-2">
+            <a href="{{route('bydate')}}" class="p-2 border rounded bg-indigo-50">View By Date</a>
+            <a href="{{route('home')}}" class="p-2 border rounded bg-indigo-50">View By Title</a>
+        </nav>
+
         <div class="m-2 p-3">
 
                 {{ $slot }}
