@@ -3,6 +3,7 @@
     <div class="m-2 p-2">
         @php
             $grand_total = 0;
+            $total_books_sold = 0;
         @endphp
         @foreach ($books as $book)
             <div class="border-2 rounded p-2 m-2  bg-indigo-50">
@@ -19,6 +20,7 @@
                         $royalty = $book->royalty * $sale->qty;
                         $total_royalty += $royalty;
                         $grand_total += $royalty;
+                        $total_books_sold += $sale->qty;
                     @endphp
                     <tr class="border-b-2">
                         <td class="pl-4">{{$sale->order_date}}</td>
@@ -37,7 +39,7 @@
         <table class="table-fixed w-full">
             <tr class="font-bold border-t-2">
                 <td>Grand Total</td>
-                <td></td>
+                <td>{{$total_books_sold}}</td>
                 <td>{{$grand_total}}</td>
             </tr>
         </table>
