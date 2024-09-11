@@ -45,10 +45,11 @@
         </table>
     </div>
 
-
     <div class="flex">
         <div class="border-2 bg-white m-3 p-2">
             <h2 class="text-lg font-bold">Load</h2>
+            <p class="text-sm text-indigo-900 italic mb-2">Export the Paperback Royalty tab as CSV before importing. <br>Save in MyDocuments/KDP Reports</p>
+
             <form action="{{route('loadBooks')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="file" name="file" class="form-control">
