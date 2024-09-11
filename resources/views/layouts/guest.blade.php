@@ -16,8 +16,12 @@
     </head>
     <body class="font-sans text-gray-900 antialiased">
         <nav class="p-2 m-2">
-            <a href="{{route('bydate')}}" class="p-2 border rounded bg-indigo-50">View By Date</a>
-            <a href="{{route('home')}}" class="p-2 border rounded bg-indigo-50">View By Title</a>
+            <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                {{ __('View By Title') }}
+            </x-nav-link>
+            <x-nav-link :href="route('bydate')" :active="request()->routeIs('bydate')">
+                {{ __('View By Date') }}
+            </x-nav-link>
         </nav>
 
         <div class="m-2 p-3">
