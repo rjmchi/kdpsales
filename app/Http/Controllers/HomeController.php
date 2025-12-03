@@ -51,7 +51,7 @@ class HomeController extends Controller
                     $asin = $data[16];
 
                     if (!$book = Book::where('asin', $asin)->first()){
-                        $book = Book::create(['asin'=>$asin, 'title'=>$title, 'price'=>$price, 'cost'=>$cost, 'royalty'=>$royalty]);
+                        $book = Book::create(['asin'=>$asin, 'title'=>$title, 'price'=>$price, 'cost'=>$cost, 'royalty'=>$royalty/$qty]);
                     }
 
                     Sales::create([
