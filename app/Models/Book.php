@@ -14,5 +14,12 @@ class Book extends Model
     {
         return $this->hasMany(Sales::class);
     }
+
+    public function scopeWithOrderedSales($query) {
+        return $query->with(['sales' => function ($q) {
+            $q->orderBy('order_date');
+        }]);
+    }
+
 }
 

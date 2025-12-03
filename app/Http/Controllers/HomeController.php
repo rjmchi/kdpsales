@@ -11,10 +11,11 @@ use Illuminate\Support\Facades\Storage;
 class HomeController extends Controller
 {
     public function index () {
-        $books = Book::with(['sales' => function (Builder $query) {
-            $query->orderBy('order_date');
-        }])->get();
+        // $books = Book::with(['sales' => function (Builder $query) {
+        //     $query->orderBy('order_date');
+        // }])->get();
 
+        $books = Book::withOrderedSales()->get();
         return view('welcome', ['books'=>$books]);
     }
 
