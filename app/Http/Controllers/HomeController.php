@@ -3,24 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
-use App\Models\Sales;
-use Illuminate\Contracts\Database\Eloquent\Builder;
+use App\Models\Sale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
-    public function index () {
-        // $books = Book::with(['sales' => function (Builder $query) {
-        //     $query->orderBy('order_date');
-        // }])->get();
-
+    public function index() {
         $books = Book::withOrderedSales()->get();
-        return view('welcome', ['books'=>$books]);
+        return view('home', compact('books'));
     }
 
     public function bydate() {
-        $sales = Sales::orderBy('order_date')->with('book')->get();
+        $sales = Sale::orderBy('order_date')->with('book')->get();
         return view('bydate', ['sales'=>$sales]);
     }
 
@@ -54,7 +49,7 @@ class HomeController extends Controller
                         $book = Book::create(['asin'=>$asin, 'title'=>$title, 'price'=>$price, 'cost'=>$cost, 'royalty'=>$royalty/$qty]);
                     }
 
-                    Sales::create([
+                    Sale::create([
                         'royalty_date'=>$royalty_date,
                         'order_date'=>$order_date,
                         'book_id'=>$book->id,

@@ -1,28 +1,29 @@
-<x-guest-layout>
+<x-layouts.main>
 
-    <div class="p-2 m-2">
+    <div class="m-2 p-2">
         @php
             $total = 0;
             $total_royalty = 0;
         @endphp
         @foreach ($sales as $sale)
-            <div class="p-2 m-2 border-2 rounded bg-indigo-50">
-                <table class="w-full table-fixed">
+            <div class="border-2 rounded p-2 m-2  bg-indigo-50">
+                <table class="table-fixed w-full">
                     @php
                         $total += $sale->qty;
-                        $total_royalty += $sale->royalty;
+                        $royalty = $sale->book->royalty * $sale->qty;
+                        $total_royalty += $royalty;
                     @endphp
                     <tr class="border-b-2">
                         <td>{{ $sale->book->title }}</td>
                         <td class="pl-4">{{ $sale->order_date }}</td>
                         <td>{{ $sale->qty }}</td>
-                        <td>{{ $sale->royalty }}</td>
+                        <td>{{ $royalty }}</td>
                     </tr>
 
                 </table>
             </div>
         @endforeach
-        <table class="w-full table-fixed">
+        <table class="table-fixed w-full">
             <tr class="font-bold border-t-2">
                 <td>Total:</td>
                 <td>{{ $total }}</td>
@@ -32,14 +33,19 @@
     </div>
 
     <div class="flex">
-        <div class="p-2 m-3 bg-white border-2">
+        <div class="border-2 bg-neutral-50 m-3 p-2">
             <h2 class="text-lg font-bold">Load</h2>
+            <p class="text-sm text-indigo-900 italic mb-2">Export the Paperback Royalty tab as CSV before importing.
+                <br>Save in MyDocuments/KDP Reports
+            </p>
             <form action="{{ route('loadBooks') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="file" name="file" class="form-control">
-                <button type="submit"
-                    class="px-3 py-2 ml-8 leading-5 text-white bg-indigo-700 rounded-md hover:bg-indigo-600">Upload</button>
+                <input type="file" name="file" class=" cursor-pointer border border-teal-500 rounded p-2">
+
+                <flux:button type='submit' variant="primary">Upload</flux:button>
             </form>
+
         </div>
-    </div>
-</x-guest-layout>
+
+
+</x-layouts.main>
